@@ -10,39 +10,57 @@ $projects_table = [
             'task' => 'Собеседование в IT компании',
             'date' => '01.06.2018',
             'categories' => 'Работа',
-            'status' => 'Нет'
+            'status' => false
         ],
           [
             'task' => 'Выполнить тестовое задание',
             'date' => '25.05.2018',
             'categories' => 'Работа',
-            'status' => 'Нет'
+            'status' => false
         ],
           [
             'task' => 'Сделать задание первого раздела',
             'date' => '21.04.2018',
             'categories' => 'Учеба',
-            'status' => 'Да'
+            'status' => true
         ],
           [
             'task' => 'Встреча с другом',
             'date' => '22.04.2018',
             'categories' => 'Входящие',
-            'status' => 'Нет'
+            'status' => false
         ],
           [
             'task' => 'Купить корм для кота',
             'date' => 'Нет',
             'categories' => 'Домашние дела',
-            'status' => 'Нет'
+            'status' => false
         ],
           [
             'task' => 'Заказать пиццу',
             'date' => 'Нет',
             'categories' => 'Домашние дела',
-            'status' => 'Нет'
+            'status' => false
         ],
 ];
+
+// Выводим функцию подсчета задач
+function count_tasks($tasks, $category)
+{
+    $amount = 0;
+  
+  if ($category == 'Все') {
+     return count($tasks);
+  }
+  
+  foreach ($tasks as $v) {
+    if ($v['categories'] == $category) {
+     $amount++;
+    }
+  } 
+    return $amount;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -89,18 +107,18 @@ $projects_table = [
                     <ul class="main-navigation__list">
                         <?php
                             $index = 0;
-														$num = count($names_projects);
-														while ($index < $num): ?>
-															<?php if($index == 0): ?>
-														    <li class="main-navigation__list-item main-navigation__list-item--active">
-														  <?php else: ?>
-														  	<li class="main-navigation__list-item">
-														  <?php endif ?>
-														        <a class="main-navigation__list-item-link" href="#"> <?php print($names_projects[$index]); ?></a>
-														        <span class="main-navigation__list-item-count">0</span>
-														    </li>
-														<?php $index = $index + 1; ?>
-												<?php endwhile; ?>
+							$num = count($names_projects);
+							while ($index < $num): ?>
+								<?php if($index == 0): ?>
+							    <li class="main-navigation__list-item main-navigation__list-item--active">
+							  <?php else: ?>
+							  	<li class="main-navigation__list-item">
+							  <?php endif ?>
+							        <a class="main-navigation__list-item-link" href="#"> <?php print($names_projects[$index]); ?></a>
+							         <span class="main-navigation__list-item-count"> <?php echo count_tasks($projects_table, $names_projects[$index]); ?> </span>
+							    </li>
+							<?php $index = $index + 1; ?>
+					<?php endwhile; ?>
                     </ul>
                 </nav>
 
@@ -141,7 +159,7 @@ $projects_table = [
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
                     <?php if ($show_complete_tasks): ?>
                        <?php foreach ($projects_table as $name): ?>
-                       <?php if($name['status'] == "Да"): ?>
+                       <?php if($name['status'] == true): ?>
                         <tr class="tasks__item task task--completed">
                        <?php else: ?>
                         <tr class="tasks__item task">
