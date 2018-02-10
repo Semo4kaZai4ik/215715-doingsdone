@@ -44,7 +44,7 @@ $projects_table = [
         ],
 ];
 
-// Выводим функцию подсчета задач
+// Выводим функцию подсчета задач в категориях
 function count_tasks($tasks, $category)
 {
     $amount = 0;
