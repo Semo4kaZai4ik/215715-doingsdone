@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $title; ?></title>
+    <title><?php echo $title = htmlspecialchars($title); ?></title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -62,7 +62,11 @@
             </section>
             
             <!-- Вывод переменной main -->
-            <?php echo $main; ?>
+            <?php echo $main = get_template('templates/index.php', [
+                'names_projects' => $names_projects,
+                'projects_table' => $projects_table,
+                'show_complete_tasks' => $show_complete_tasks
+                ]); ?>
            
         </div>
     </div>

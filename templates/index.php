@@ -40,13 +40,17 @@
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
                                     <input class="checkbox__input visually-hidden" type="checkbox" checked>
-                                    <a href="/"><span class="checkbox__text"><?php print($name['task']); ?></span></a>
+                                    <a href="/"><span class="checkbox__text">
+                                        <?php $name['task'] = esc($name['task']);
+                                        print($name['task']); ?></span></a>
                                 </label>
                             </td>
                             <td class="task__file">
                                 <a class="download-link" href="#">Home.psd</a>
                             </td>
-                            <td class="task__date"><?php print($name['status']); ?></td>
+                            <td class="task__date">
+                                <?php $name['status'] = esc($name['status']);
+                                 print($name['status']); ?></td>
                         </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
