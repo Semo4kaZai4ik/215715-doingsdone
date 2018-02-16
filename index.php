@@ -2,7 +2,6 @@
 // подключаем файлы .php
 require_once ('functions.php');
 require_once ('data.php');
-//
 
 $layout = get_template('templates/layout.php', [
   'names_projects' => $names_projects,
@@ -12,7 +11,3 @@ $layout = get_template('templates/layout.php', [
 ]);
 
 print($layout);
-
-?>
-
-
