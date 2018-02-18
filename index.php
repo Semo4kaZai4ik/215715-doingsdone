@@ -11,3 +11,5 @@ $layout = get_template('templates/layout.php', [
 ]);
 
 print($layout);
+
+?>

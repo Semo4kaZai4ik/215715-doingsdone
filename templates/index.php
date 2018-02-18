@@ -32,7 +32,11 @@
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
                     <?php if ($show_complete_tasks): ?>
                        <?php foreach ($projects_table as $name): ?>
-                       <?php if($name['status'] == true): ?>
+                       	<?php 
+                        	$days_left = time_left($name['date']);
+                        	if ($days_left <= 1 && $name['date'] !== "Нет"): ?>
+                        <tr class="tasks__item task task--important">
+                       <?php elseif ($name['status'] == true): ?>
                         <tr class="tasks__item task task--completed">
                        <?php else: ?>
                         <tr class="tasks__item task">
