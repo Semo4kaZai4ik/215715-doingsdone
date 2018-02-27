@@ -42,20 +42,24 @@
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
                         <?php
-                            $index = 0;
-							$num = count($names_projects);
-							while ($index < $num): ?>
-								<?php if($index == 0): ?>
+                
+                        $project_id = $_GET['project'];
+                            
+                          if ($project_id < 0 || $project_id > 5 ) {
+                            echo "Ошибка 404";
+                            exit;
+                        }
+						$num = count($names_projects);
+							for ($index = 0; $index < $num; $index++): ?>
+								<?php if($project_id == $index): ?>
 							    <li class="main-navigation__list-item main-navigation__list-item--active">
 							  <?php else: ?>
 							  	<li class="main-navigation__list-item">
 							  <?php endif ?>
-							  <?php if (isset($_GET['categories'])) $project = $_GET['categories']; ?>
-							        <a class="main-navigation__list-item-link" href="index.php?project"> <?php print($names_projects[$index]); ?></a>
-							         <span class="main-navigation__list-item-count"> <?php echo count_tasks($projects_table, $names_projects[$index]); ?> </span>
+							        <a class="main-navigation__list-item-link" href="index.php?project=<?php echo $index ?>">  <?php print($names_projects[$index]); ?></a>
+							         <span class="main-navigation__list-item-count"> <?php echo count_tasks($projects_table, $index); ?> </span>
 							    </li>
-							<?php $index = $index + 1; ?>
-					<?php endwhile; ?>
+					<?php endfor; ?>
                     </ul>
                 </nav>
 
@@ -65,7 +69,7 @@
             <!-- Вывод переменной main -->
             <?php echo $main = get_template('templates/index.php', [
                 'names_projects' => $names_projects,
-                'projects_table' => $projects_table,
+                'projects_table' => select_tasks($projects_table, $project_id),
                 'show_complete_tasks' => $show_complete_tasks
                 ]); ?>
            

@@ -58,7 +58,7 @@ function select_tasks($tasks, $project)
   
   // Пройдемся по всем задачам
   foreach ($tasks as $task) {
-    if ($task['categories'] == $project) { // Если задача для данного проекта
+    if ($task['categories'] == $project || $project == 0) { // Если задача для данного проекта
     	$selected[] = $task; // Добавим её в массив отобранных
     }
   }
