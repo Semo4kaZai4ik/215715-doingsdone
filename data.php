@@ -43,6 +43,3 @@ $projects_table = [
             'status' => false
         ],
 ];
-
-
-?>

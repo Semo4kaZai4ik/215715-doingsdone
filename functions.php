@@ -12,6 +12,7 @@ function get_template($template, $massiv) {
 		require_once ("error.php");
 	}
 	
+
 }
 
 //функция фильтрации данных
