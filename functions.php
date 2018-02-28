@@ -10,7 +10,9 @@ function get_template($template, $massiv) {
 	}
 	elseif (file_exists($template) == false) {
 		require_once ("error.php");
-	}	
+	}
+	
+
 }
 
 //функция фильтрации данных
@@ -32,4 +34,35 @@ function time_left($date) {
   $result = floor($b);
 
 	return $result;
+}
+
+// Выводим функцию подсчета задач
+function count_tasks($tasks, $category) {
+    $amount = 0;
+  
+  if ($category == 'Все') {
+     return count($tasks);
+  }
+  
+  foreach ($tasks as $v) {
+    if ($v['categories'] == $category) {
+     $amount++;
+    }
+  } 
+    return $amount;
+}
+
+// Вернуть массив только с теми задачами, которые для данного проекта
+function select_tasks($tasks, $project)
+{
+  $selected = []; // Сюда будем добавлять нужные задачи
+  
+  // Пройдемся по всем задачам
+  foreach ($tasks as $task) {
+    if ($task['categories'] == $project || $project == 0) { // Если задача для данного проекта
+    	$selected[] = $task; // Добавим её в массив отобранных
+    }
+  }
+  
+  return $selected; // Вернем отобранные задачи
 }
