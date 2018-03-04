@@ -11,7 +11,6 @@ function get_template($template, $massiv) {
 	elseif (file_exists($template) == false) {
 		require_once ("error.php");
 	}
-	
 }
 
 //функция фильтрации данных
@@ -65,3 +64,4 @@ function select_tasks($tasks, $project)
   
   return $selected; // Вернем отобранные задачи
 }
+

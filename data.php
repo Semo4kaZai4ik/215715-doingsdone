@@ -44,5 +44,3 @@ $projects_table = [
         ],
 ];
 
-
-?>
